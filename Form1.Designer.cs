@@ -30,13 +30,13 @@
         {
             button1 = new Button();
             txtOutput = new TextBox();
-            btnGetData = new Button();
             txtPONo = new TextBox();
+            btnTest = new Button();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(402, 11);
+            button1.Location = new Point(585, 14);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
             button1.TabIndex = 0;
@@ -49,35 +49,36 @@
             txtOutput.Location = new Point(36, 63);
             txtOutput.Multiline = true;
             txtOutput.Name = "txtOutput";
-            txtOutput.Size = new Size(351, 177);
+            txtOutput.ScrollBars = ScrollBars.Both;
+            txtOutput.Size = new Size(530, 272);
             txtOutput.TabIndex = 1;
-            // 
-            // btnGetData
-            // 
-            btnGetData.Location = new Point(402, 63);
-            btnGetData.Name = "btnGetData";
-            btnGetData.Size = new Size(112, 34);
-            btnGetData.TabIndex = 2;
-            btnGetData.Text = "Get Data";
-            btnGetData.UseVisualStyleBackColor = true;
-            btnGetData.Click += btnGetData_Click;
             // 
             // txtPONo
             // 
             txtPONo.Location = new Point(36, 14);
             txtPONo.Name = "txtPONo";
             txtPONo.PlaceholderText = "PO Number";
-            txtPONo.Size = new Size(351, 31);
+            txtPONo.Size = new Size(530, 31);
             txtPONo.TabIndex = 3;
+            // 
+            // btnTest
+            // 
+            btnTest.Location = new Point(585, 63);
+            btnTest.Name = "btnTest";
+            btnTest.Size = new Size(112, 34);
+            btnTest.TabIndex = 0;
+            btnTest.Text = "Test";
+            btnTest.UseVisualStyleBackColor = true;
+            btnTest.Click += btnTest_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(539, 262);
+            ClientSize = new Size(709, 347);
             Controls.Add(txtPONo);
-            Controls.Add(btnGetData);
             Controls.Add(txtOutput);
+            Controls.Add(btnTest);
             Controls.Add(button1);
             Name = "Form1";
             Text = "Form1";
@@ -89,7 +90,7 @@
 
         private Button button1;
         private TextBox txtOutput;
-        private Button btnGetData;
         private TextBox txtPONo;
+        private Button btnTest;
     }
 }

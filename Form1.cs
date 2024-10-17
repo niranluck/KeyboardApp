@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace KeyboardApp
 {
@@ -21,6 +22,8 @@ namespace KeyboardApp
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint processId);
+
+
         public Form1()
         {
             InitializeComponent();
@@ -50,31 +53,56 @@ namespace KeyboardApp
             // Debug
             txtOutput.Text = "Terminal is now the active window. Starting automation...";
 
+            // Seperate change keyboard layout to another function is work but when include in this line it's not work!!
+
+            // Get screen data by copy-paste
+            SendKeys.SendWait("%{e}");
+            Thread.Sleep(100);
+
+            SendKeys.SendWait("c");
+            Thread.Sleep(100);
+
+            if (Clipboard.ContainsText(TextDataFormat.Text))
+            {
+                string clipboardText = Clipboard.GetText(TextDataFormat.Text);
+                txtOutput.Text = clipboardText;
+            }
+
+            // Fill-in data
             // Tab 
-            SendKeys.SendWait("{TAB}");
-            Thread.Sleep(500); // Delay for half a second
+            //SendKeys.SendWait("{TAB}");
+            //Thread.Sleep(500); // Delay for half a second
 
             // Down
-            SendKeys.SendWait("{DOWN}");
-            Thread.Sleep(500); // Delay
+            //SendKeys.SendWait("{DOWN}");
+            //Thread.Sleep(500); // Delay
 
-            // Input
-            SendKeys.SendWait("Sample Text");
-            Thread.Sleep(500); // Delay
+            // Input Support only Eng
+            //SendKeys.SendWait("Sample Text");
+            //Thread.Sleep(100); // Delay
+
+            // Paste text -> cannot paste Thai character to the terminal
+            //Clipboard.SetText("สวัสดี");
+            //SendKeys.SendWait("%{e}");
+            //Thread.Sleep(100);
+
+            //SendKeys.SendWait("p");
+            //Thread.Sleep(100);
 
             // Enter
             //SendKeys.SendWait("{ENTER}");
         }
 
-        private void btnRestAct_Click(object sender, EventArgs e)
+        private void btnTest_Click(object sender, EventArgs e)
         {
+            InputLanguage myDefaultLanguage = InputLanguage.DefaultInputLanguage;
+            InputLanguage myCurrentLanguage = InputLanguage.CurrentInputLanguage;
+            txtOutput.Text = "Current input language is: " + myCurrentLanguage.Culture.EnglishName + '\n';
+            txtOutput.Text += "Default input language is: " + myDefaultLanguage.Culture.EnglishName + '\n';
 
-        }
-
-        private void btnGetData_Click(object sender, EventArgs e)
-        {
-            // Call REST API
-
+            // Changes the current input language to the default, and prints the new current language.
+            InputLanguage.CurrentInputLanguage = myDefaultLanguage;
+            txtOutput.Text += "Current input language is now: " + myDefaultLanguage.Culture.EnglishName;
         }
     }
 }

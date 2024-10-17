@@ -8,4 +8,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="WindowsInput">
+      <HintPath>C:\Users\niran.l\.nuget\packages\inputsimulator\1.0.4\lib\net20\WindowsInput.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
